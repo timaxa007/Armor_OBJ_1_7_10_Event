@@ -28,7 +28,7 @@ public class EventsClient {
 	acm2 = new ArmorCustomModelTest(2),
 	acm3 = new ArmorCustomModelTest(3);
 
-	public ArmorCustomModel getModel(EntityLivingBase entityPlayer, ItemStack stack, int slot) {
+	public static ArmorCustomModel getModel(EntityLivingBase entityPlayer, ItemStack stack, int slot) {
 		if (stack.getItem() == MyMod.armorHelmet) return acm0;
 		else if (stack.getItem() == MyMod.armorVest) return acm1;
 		else if (stack.getItem() == MyMod.armorPants) return acm2;
