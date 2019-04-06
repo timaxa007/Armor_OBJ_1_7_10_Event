@@ -6,14 +6,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.AdvancedModelLoader;
-import net.minecraftforge.client.model.IModelCustom;
-import timaxa007.very_custom_armor.MyMod;
 
 @SideOnly(Side.CLIENT)
 public class ArmorCustomModelTest extends ArmorCustomModel {
 
-	public static final IModelCustom model = AdvancedModelLoader.loadModel(new ResourceLocation(MyMod.MODID, "model/armor/armor_plane.obj"));
 	public static final ResourceLocation
 	texture_glass = new ResourceLocation("textures/blocks/glass_white.png"),
 	texture_wood = new ResourceLocation("textures/blocks/planks_oak.png");
@@ -41,9 +37,9 @@ public class ArmorCustomModelTest extends ArmorCustomModel {
 		if (partType == 0) {
 			GL11.glTranslatef(0F, -1.5F, 0F);
 			Minecraft.getMinecraft().renderEngine.bindTexture(texture_wood);
-			model.renderPart("helm");
+			GL11.glCallList(EventsClient.displayList[0]);
 			Minecraft.getMinecraft().renderEngine.bindTexture(texture_glass);
-			model.renderPart("glass");
+			GL11.glCallList(EventsClient.displayList[1]);
 		}
 	}
 
@@ -52,8 +48,8 @@ public class ArmorCustomModelTest extends ArmorCustomModel {
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture_wood);
 		if (partType == 1) {
 			GL11.glTranslatef(0F, -1.5F, 0F);
-			model.renderPart("body");
-			model.renderPart("plane");
+			GL11.glCallList(EventsClient.displayList[2]);
+			GL11.glCallList(EventsClient.displayList[3]);
 		}
 	}
 
@@ -61,7 +57,7 @@ public class ArmorCustomModelTest extends ArmorCustomModel {
 	public void partRightArm() {
 		if (partType == 1) {
 			GL11.glTranslatef(0.3125F, -1.375F, 0F);
-			model.renderPart("right_arm");
+			GL11.glCallList(EventsClient.displayList[4]);
 		}
 	}
 
@@ -69,7 +65,7 @@ public class ArmorCustomModelTest extends ArmorCustomModel {
 	public void partLeftArm() {
 		if (partType == 1) {
 			GL11.glTranslatef(-0.3125F, -1.375F, 0F);
-			model.renderPart("left_arm");
+			GL11.glCallList(EventsClient.displayList[5]);
 		}
 	}
 
@@ -77,18 +73,18 @@ public class ArmorCustomModelTest extends ArmorCustomModel {
 	public void partRightLeg() {
 		GL11.glTranslatef(0.125F, -0.75F, 0F);
 		if (partType == 2)
-			model.renderPart("right_leg");
+			GL11.glCallList(EventsClient.displayList[6]);
 		if (partType == 3)
-			model.renderPart("right_boot");
+			GL11.glCallList(EventsClient.displayList[8]);
 	}
 
 	@Override
 	public void partLeftLeg() {
 		GL11.glTranslatef(-0.125F, -0.75F, 0F);
 		if (partType == 2)
-			model.renderPart("left_leg");
+			GL11.glCallList(EventsClient.displayList[7]);
 		if (partType == 3)
-			model.renderPart("left_boot");
+			GL11.glCallList(EventsClient.displayList[9]);
 	}
 
 }
