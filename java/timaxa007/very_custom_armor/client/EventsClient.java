@@ -46,26 +46,16 @@ public class EventsClient {
 		if (event.stack == null) return;
 		ArmorCustomModel acm = getModel(event.entityPlayer, event.stack, event.slot);
 		if (acm == null) return;
-		acm.partHead.set(event.renderer.modelBipedMain.bipedHead);
-		acm.partBody.set(event.renderer.modelBipedMain.bipedBody);
-		acm.partRightArm.set(event.renderer.modelBipedMain.bipedRightArm);
-		acm.partLeftArm.set(event.renderer.modelBipedMain.bipedLeftArm);
-		acm.partRightLeg.set(event.renderer.modelBipedMain.bipedRightLeg);
-		acm.partLeftLeg.set(event.renderer.modelBipedMain.bipedLeftLeg);
-		acm.render(event.entityPlayer);
+		acm.render(event.renderer.modelBipedMain, event.slot, event.stack, event.entityPlayer);
 	}
 
-	private static final ArmorCustomModel
-	acm0 = new ArmorCustomModelTest(0),
-	acm1 = new ArmorCustomModelTest(1),
-	acm2 = new ArmorCustomModelTest(2),
-	acm3 = new ArmorCustomModelTest(3);
+	private static final ArmorCustomModel acm = new ArmorCustomModelTest();
 
 	public static ArmorCustomModel getModel(EntityLivingBase entityPlayer, ItemStack stack, int slot) {
-		if (stack.getItem() == MyMod.armorHelmet) return acm0;
-		else if (stack.getItem() == MyMod.armorVest) return acm1;
-		else if (stack.getItem() == MyMod.armorPants) return acm2;
-		else if (stack.getItem() == MyMod.armorBoots) return acm3;
+		if (stack.getItem() == MyMod.armorHelmet) return acm;
+		else if (stack.getItem() == MyMod.armorVest) return acm;
+		else if (stack.getItem() == MyMod.armorPants) return acm;
+		else if (stack.getItem() == MyMod.armorBoots) return acm;
 		else return null;
 	}
 
